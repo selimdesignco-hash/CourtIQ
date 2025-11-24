@@ -1,0 +1,66 @@
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { User, TrendingUp, TrendingDown } from "lucide-react";
+
+export default function PlayerCard({ player }) {
+  return (
+    <Card className="bg-gradient-to-b from-gray-900 to-black border-gray-800 hover:border-orange-500/50 transition-all">
+      <CardHeader>
+        <CardTitle className="text-white flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center">
+              <User className="w-6 h-6 text-orange-500" />
+            </div>
+            <div>
+              <div className="text-xl">{player.name}</div>
+              <div className="text-sm text-gray-400 font-normal">
+                {player.number} • {player.position}
+              </div>
+            </div>
+          </div>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {/* Strengths */}
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <TrendingUp className="w-4 h-4 text-green-500" />
+            <h4 className="text-green-400 font-semibold text-sm">Strengths</h4>
+          </div>
+          <ul className="space-y-1">
+            {player.strengths?.map((strength, i) => (
+              <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                <span className="text-green-500 mt-1">•</span>
+                {strength}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Weaknesses */}
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <TrendingDown className="w-4 h-4 text-red-500" />
+            <h4 className="text-red-400 font-semibold text-sm">Weaknesses</h4>
+          </div>
+          <ul className="space-y-1">
+            {player.weaknesses?.map((weakness, i) => (
+              <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                <span className="text-red-500 mt-1">•</span>
+                {weakness}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Tendencies */}
+        {player.tendencies && (
+          <div className="pt-3 border-t border-gray-800">
+            <h4 className="text-orange-400 font-semibold text-sm mb-2">Tendencies</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">{player.tendencies}</p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
