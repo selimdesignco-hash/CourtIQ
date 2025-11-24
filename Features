@@ -1,0 +1,107 @@
+import React from 'react';
+import { Users, Target, Shield, TrendingUp, FileText, Tag, Download, FolderOpen } from "lucide-react";
+import { motion } from "framer-motion";
+
+const features = [
+  {
+    icon: Users,
+    title: "Auto Player Detection",
+    description: "AI identifies and tracks every player throughout the game automatically"
+  },
+  {
+    icon: Target,
+    title: "Offensive Set Recognition",
+    description: "Detects High PnR, Horns, BLOB, and 20+ other offensive plays"
+  },
+  {
+    icon: Shield,
+    title: "Defensive Scheme Analysis",
+    description: "Man-to-man, zone, press detection with coverage breakdowns"
+  },
+  {
+    icon: TrendingUp,
+    title: "Shot Charts & Usage",
+    description: "Heat maps, shooting percentages, and player usage statistics"
+  },
+  {
+    icon: FileText,
+    title: "Player Breakdown Cards",
+    description: "Detailed profiles with strengths, weaknesses, and tendencies"
+  },
+  {
+    icon: Tag,
+    title: "Custom Coach Notes",
+    description: "Add your own insights and game-plan adjustments"
+  },
+  {
+    icon: Download,
+    title: "PDF Export",
+    description: "Professional scouting reports ready to share with your team"
+  },
+  {
+    icon: FolderOpen,
+    title: "Game Organization",
+    description: "Tag and organize by opponent, tournament, or season"
+  }
+];
+
+export default function Features() {
+  return (
+    <section className="relative py-32 bg-gradient-to-b from-black via-gray-950 to-black">
+      {/* Background accent */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl opacity-10">
+        <div className="w-full h-full bg-orange-500 blur-[150px] rounded-full" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            Real AI Basketball Analysis
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Advanced computer vision and machine learning built specifically for basketball
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="bg-gradient-to-b from-gray-900/50 to-black/50 border border-gray-800 rounded-xl p-6 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 h-full">
+                  {/* Icon */}
+                  <div className="mb-4">
+                    <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
+                      <Icon className="w-6 h-6 text-orange-500" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
